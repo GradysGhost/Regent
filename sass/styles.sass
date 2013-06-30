@@ -1,0 +1,571 @@
+@import variables
+@import bootstrap
+@import font-awesome
+
+// Include responsive Bootstrap styles
+// @import "bootstrap-responsive"
+
+// $lightText
+// $darkerText
+// $pageBackground
+// $navBackground
+// $accent
+
+/** Tags **/
+
+html, body
+    padding: 0
+    margin: 0
+    height: 100%
+    background-color: $pageBackground
+
+button
+    @extend .btn
+    background-image: none
+    border: 0
+    box-shadow: 0 0
+    margin-bottom: 10px
+
+input[type=text]:focus, input[type=password]:focus
+    border-color: $accent
+    outline: 0
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px $accent
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px $accent
+
+::-webkit-scrollbar
+    width: 8px
+    height: 8px
+
+::-webkit-scrollbar-track
+    background: rgba(0,0,0,0.1)
+
+::-webkit-scrollbar-thumb
+    background: rgba($navBackground, 0.5)
+
+::-webkit-scrollbar-thumb:hover
+    background: rgba($navBackground, 0.6)
+
+::-webkit-scrollbar-thumb:active
+    background: rgba($navBackground, 0.7)
+
+
+/** Components **/
+.icon
+    font-family: FontAwesome
+    font-weight: normal
+    font-style: normal
+    text-decoration: inherit
+    -webkit-font-smoothing: antialiased
+    width: auto
+    height: auto
+    line-height: normal
+    vertical-align: baseline
+    background-image: none
+    background-position: 0% 0%
+    background-repeat: repeat
+    margin-top: 0
+
+.default-button
+    @extend .btn-primary
+    background-image: none
+
+.clearfix
+    display: inline-block
+
+.clearfix:after
+    content: "."
+    display: block
+    clear: both
+    visibility: hidden
+    line-height: 0
+    height: 0
+
+.section-title
+    width: 100%
+    text-align: center
+    background-color: $accent
+    border-top-left-radius: 5px
+    border-top-right-radius: 5px
+    color: $lightText
+    padding: 4px 0
+    font-weight: bold
+    font-size: 1.2em
+    margin-top: 5px
+
+.j1, .j2, .j3, .j4, .j5, .j6
+    background-image: url('../img/number-font.png')
+    background-size: 80px 60px
+
+.j1, .j2, .j3, .j4
+    background-position-y: 0
+
+.j1
+    background-position-x: 0px
+
+.j2
+    background-position-x: -20px
+
+.j3
+    background-position-x: -40px
+
+.j4
+    background-position-x: -60px
+
+.j5, .j6
+    background-position-y: -20px
+
+.j5
+    background-position-x: 0px
+
+.j6
+    background-position-x: -20px
+
+
+/** Page sections **/
+
+.side-bar
+    width: 200px
+    height: 100%
+    float: left
+    clear: right
+    color: $lightText
+    background-color: $navBackground
+
+    .title
+        color: $accent
+        text-align: center
+        font-weight: bold
+        font-size: 1.2em
+        padding: 5px 0
+        border-bottom: 1px solid lighten($navBackground, 20%)
+
+    .menu
+        padding: 10px
+        padding-top: 0
+
+        legend
+            color: $darkerText
+            border-bottom: 0
+            margin-bottom: 3px
+            font-size: 1.2em
+
+        input[type=text], input[type=password]
+            width: 140px
+
+        .processing-login
+            @extend .icon
+            @extend .icon-spinner
+            @extend .icon-spin
+            @extend .icon-large
+            top: -5px
+            left: 10px
+            position: relative
+
+        .failedMsg
+            padding-top: 7px
+
+        .labled-input
+            @extend .input-prepend
+
+            .input-label
+                @extend .add-on
+                background-color: $accent
+                color: $lightText
+                border: 0
+                padding: 5px
+
+        .menu-category
+            margin: 0
+
+        .menu-option
+            list-style: none
+
+            a
+                position: relative
+                display: block
+                cursor: pointer
+                width: 175px
+                padding: 5px
+                font-size: 1.3em
+
+                .icon-caret-right, .icon-caret-down
+                    float: right
+
+                &:hover
+                    text-decoration: none
+                    color: $accent
+                    background-color: lighten($navBackground, 10%)
+
+        .sub-category
+            li
+                width: 145px
+                padding: 3px 5px
+                cursor: pointer
+
+                &.menu-option
+                    // border-bottom: 1px dotted lighten($navBackground, 20%)
+
+                    .option-offset
+                        padding-top: 2px
+                        margin-right: 8px
+
+                &:hover
+                    background-color: lighten($navBackground, 20%)
+
+.content
+    overflow: auto
+    height: 100%
+
+    &::-webkit-scrollbar
+        width: 12px
+        height: 12px
+
+.card
+    @extend .clearfix
+    position: relative
+    top: 100px
+    left: 100px
+    border-radius: 20px
+    color: $navBackground
+    background-color: darken($pageBackground, 15%)
+
+.sheet
+    width: 390px
+
+    .title-bar
+        border-top-left-radius: 15px
+        border-top-right-radius: 15px
+        padding: 2px 5px
+        color: $lightText
+        background-color: $accent
+
+    .name
+        width: 100%
+        padding: 3px 0
+        text-align: center
+        font-weight: bold
+        font-size: 1.1em
+
+    .player
+        color: rgba($lightText, 0.45)
+
+    .pic
+        background-position: 0px 0px
+        background-size: 100%
+        width: 100px
+        height: 130px
+        float: left
+
+    .bio
+        width: 150px
+        height: 130px
+        float: left
+        padding: 0 10px
+
+        .specialization
+            float: left
+            width: 70%
+            font-weight: bold
+            padding: 5px 0
+            border-bottom: 1px dotted lighten($navBackground, 20%)
+
+        .age-sex
+            float: left
+            width: 30%
+            padding: 5px 0
+            border-bottom: 1px dotted lighten($navBackground, 20%)
+
+        .archetypes
+            padding: 0 0 5px 5px
+            height: 70px
+            width: 145px
+            overflow-x: hidden
+            overflow-y: auto
+            background-color: $lightText
+
+            .archetype
+                clear: left
+                padding: 5px 0 0
+                font-size: 0.9em
+                line-height: 15px
+
+    .karma-attribute-cost
+        width: 100%
+        border-top: 1px dotted lighten($navBackground, 20%)
+        padding: 3px 0
+
+        .karma-cost, .attribute-cost
+            width: 50%
+            font-weight: bold
+            text-align: center
+            float: left
+
+            .cost
+                font-weight: normal
+
+    .kiai-karma
+        float: left
+        width: 110px
+        text-align: center
+
+        .kiai
+            padding: 5px 0 10px
+            font-weight: bold
+            // border-bottom: 1px dotted lighten($navBackground, 20%)
+
+        .kiai-current-label,
+        .kiai-spent-label,
+        .karma-label
+            width: 55px
+            float: left
+            clear: left
+            text-align: center
+            padding-bottom: 5px
+            font-size: 0.8em
+
+        .kiai-current,
+        .kiai-spent,
+        .karma
+            width: 45px
+            margin: 0 5px
+            float: left
+            background-color: $lightText
+
+        .karma-label, .karma
+            margin-top: 10px
+
+        .karma-label
+            font-weight: bold
+            font-size: 1em
+
+        .spacer
+            clear: both
+            height: 5px
+            border-bottom: 1px dotted lighten($navBackground, 20%)
+
+    .divisor
+        width: 100%
+        height: 5px
+        clear: both
+
+    .left-pane, .attributes-skills
+        float: left
+        min-height: 100px
+
+    .left-pane
+        width: 203px
+        padding: 0 7px 0 0
+
+        .fates-title
+            @extend .section-title
+
+        .fate
+            display: inline-block
+            border-bottom: 1px dotted lighten($navBackground, 20%)
+            width: 100%
+            margin-bottom: -5px
+
+            .fate-group
+                float: left
+
+                .fate-type
+                    padding: 5px 0 0 10px
+                    width: 155px
+                    font-style: italic
+                    background-color: $lightText
+
+                .fate-name
+                    padding: 0 0 5px 15px
+                    width: 150px
+                    background-color: $lightText
+
+            .fate-cost
+                float: left
+                width: 20px
+                margin: 12px 0 0 10px
+                border: 2px solid #ffffff
+                border-radius: 2px
+                text-align: center
+                background-color: #ffffff
+
+        .fate-total
+            padding: 5px
+            text-align: right
+            border-bottom: 1px dotted lighten($navBackground, 20%)
+
+        .wounds
+            float: left
+            min-height: 120px
+            width: 145px
+            padding: 5px 0 5px
+            overflow: hidden
+
+            .wounds-title
+                text-align: center
+                font-weight: bold
+
+            .wound-box
+                padding: 5px 0 5px 11px
+                width: 57px
+                float: left
+                line-height: normal
+
+            .light-wounds, .heavy-wounds, .critical-wounds, .dead-wounds
+                font-size: 0.9em
+                width: 50px
+                text-align: center
+
+            .wound
+                display: inline-block
+                margin: 0
+                height: 10px
+                width: 10px
+                border: 1px solid black
+                background-color: $lightText
+                border-right: 0
+
+                &.wound-end
+                    border-right: 1px solid black
+
+                &.wound-marked
+                    background-color: lighten($navBackground, 20%)
+
+            .spacer
+                clear: left
+
+        .vitality-soul
+            display: inline-block
+            height: 130px
+            width: 58px
+
+            .vitality, .soul,
+                font-weight: bold
+                text-align: center
+                padding: 5px 0
+
+            .vitality-value, .soul-value
+                text-align: center
+                background-color: $lightText
+                margin: 0 15px
+                padding: 5px
+
+        .weapons
+            width: 100%
+
+            .weapon-section-title
+                @extend .section-title
+
+            .weapon-damage-label,
+            .weapon-rof-label,
+            .weapon-range-label,
+            .weapon-ammo-label
+                background-color: lighten($navBackground, 20%)
+                color: $lightText
+                padding-left: 10px
+
+            .weapon-stats-labels,
+                width: 100%
+                font-size: 0
+                line-height: normal
+
+                .weapon-damage-label,
+                .weapon-rof-label,
+                .weapon-range-label,
+                .weapon-ammo-label,
+                    font-size: 14px
+                    display: inline-block
+                    width: 25%
+                    padding: 1px 0
+                    text-align: center
+
+            .weapon
+                &:nth-child(odd)
+                    background-color: $pageBackground
+
+                &:nth-child(even)
+                    background-color: $lightText
+
+                .weapon-name
+                    padding-left: 10px
+                    padding-top: 2px
+
+                .weapon-stats
+                    width: 100%
+                    font-size: 0
+
+                    .weapon-damage,
+                    .weapon-rof,
+                    .weapon-range,
+                    .weapon-ammo
+                        font-size: 14px
+                        display: inline-block
+                        width: 25%
+                        padding: 0
+                        text-align: center
+
+        .possessions-title
+            @extend .section-title
+            margin-top: 10px
+
+        .possessions
+            width: 100%
+            max-height: 90px
+            overflow-x: hidden
+            overflow-y: auto
+
+            .possession
+                padding: 5px 10px
+                background-color: $lightText
+                font-size: 0.9em
+                line-height: 15px
+
+        .possessions-no-max
+            max-height: none
+
+    .attributes-skills
+        width: 180px
+
+        .skills-title
+            @extend .section-title
+            cursor: pointer
+
+        .attribute
+            font-weight: bold
+            font-size: 1.2em
+            background-color: darken($pageBackground, 25%)
+
+            .attribute-name
+                @extend .clearfix
+                padding: 3px 0 0 5px
+
+            .attrib-value
+                margin: 4px 4px 0 0
+                min-width: 20px
+                padding: 0 4px
+                text-align: center
+                height: 100%
+                float: right
+                background-color: $lightText
+                font-weight: bold
+
+            .skill
+                .skill-name
+                    float: left
+                    display: block
+                    width: 170px
+                    padding: 2px 0 0 10px
+                    font-size: 1em
+                    font-weight: normal
+                    background-color: $lightText
+                    border-bottom: 1px dotted lighten($navBackground, 60%)
+
+                .skill-value
+                    float: right
+                    width: 20px
+                    position: relative
+                    margin: -1px 0 0 0
+                    padding: 0
+                    border-radius: 2px
+                    border: 2px solid #ffffff
+                    text-align: center
+                    background-color: #ffffff
