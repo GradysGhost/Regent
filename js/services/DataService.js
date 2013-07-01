@@ -28,7 +28,14 @@ factory('DataService', ['$resource', function ($resource) {
                 method: "GET",
                 params: {
                     collection: 'users',
-                    //q: { name: '@name', password: '@pass' },
+                    fo: true
+                },
+                isArray: false
+            },
+            getTemplate: {
+                method: "GET",
+                params: {
+                    collection: 'templates',
                     fo: true
                 },
                 isArray: false

@@ -1,17 +1,14 @@
 
-angular.module('tbz').controller('CardsCtrl', function ($scope, $element, DataService) {
-    $scope.loadedCards = [];
+angular.module('tbz').
+controller('CardsCtrl', function ($scope, CardService) {
 
     // 0 = Only show attributes
     // 1 = Show trained skills
     // 2 = Show all skills
     $scope.skillDisplayMode = 1;
 
-    // $scope.start = function () {
-    //     debugger;
-    //     var data = $scope.loadedCards[0].data;
-    //     DataService.addToCollection("templates", {name:"sheet", type: "json", data: data});
-    // };
+    // Bind CardsContrl cards to service cards
+    $scope.cards = CardService.cards;
 
     $scope.toggleSkillDisplayMode = function () {
         $scope.skillDisplayMode = ($scope.skillDisplayMode + 1) % 3;
@@ -38,10 +35,6 @@ angular.module('tbz').controller('CardsCtrl', function ($scope, $element, DataSe
 
         if (value > 0)
             return "j" + value.toString();
-    };
-
-    $scope.getSheetPic = function (img_src) {
-        angular.element($element.children().children()[1]).css("background-image", img_src);
     };
 
     $scope.getKeys = function (obj) {

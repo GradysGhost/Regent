@@ -98,7 +98,6 @@
 					</a>
 
 					<ul class="sub-category" collapse="item.collapsed">
-						<!-- <li class="new-character"><i class="add icon-plus-sign"></i>New Character</li> -->
 						<li class="menu-option"
 							ng-repeat="option in item.items"
 							ng-click="option.func()">
@@ -108,163 +107,12 @@
 				</li>
 			</ul>
 		</div>
-
-		<!-- Characters -->
-<!-- 		<ul class="menu-category" ng-show="showCharacters">
-			<li class="menu-option">
-				<a ng-click="charsCollapsed = !charsCollapsed">
-					Characters<i ng-class="getCaret(charsCollapsed)"></i>
-				</a>
-
-				<ul class="sub-category" collapse="charsCollapsed">
-					<li class="new-character"><i class="add icon-plus-sign"></i>New Character</li>
-				</ul>
-			</li>
-		</ul>
-		<div class="add-character"></div>
- -->
 	</div>
 </div>
 
 <div class="content" ng-controller="CardsCtrl">
-
-	<div class="card sheet" ng-repeat="card in loadedCards">
-
-		<div class="title-bar">
-			<div class="name">
-				{{card.data.bio.name}}
-				<span class="player">[ {{card.data.bio.player}} ]</span>
-			</div>
-		</div>
-
-		<div class="pic" tbz-load-image="card.data.bio.img_src"></div>
-
-		<div class="bio">
-
-			<div class="specialization">{{card.data.bio.specialization}}</div>
-			<div class="age-sex">{{card.data.bio.age}} <i class="icon-{{card.data.bio.sex}}"></i></div>
-
-			<div class="archetypes">
-				<div class="archetype" ng-repeat="archetype in card.data.bio.archetypes">{{archetype}}</div>
-			</div>
-
-			<div class="karma-attribute-cost">
-				<div class="karma-cost" alt>
-					K<i class="icon-yen"></i>:
-					<span class="cost">{{card.data.bio.karma_cost}}</span>
-				</div>
-
-				<div class="attribute-cost">
-					A<i class="icon-yen"></i>:
-					<span class="cost">{{card.data.bio.attribute_cost}}</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="kiai-karma">
-			<div class="kiai">Kiai</div>
-
-			<div>
-				<div class="kiai-current-label">Current</div>
-				<div class="kiai-current">{{card.data.bio.current_kiai}}</div>
-			</div>
-
-			<div>
-				<div class="kiai-spent-label">Spent</div>
-				<div class="kiai-spent">{{card.data.bio.spent_kiai}}</div>
-			</div>
-
-			<div class="spacer"></div>
-
-			<div>
-				<div class="karma-label">Karma</div>
-				<div class="karma">{{card.data.bio.karma}}</div>
-			</div>
-		</div>
-
-		<div class="left-pane">
-			<div class="fates-title">Fates</div>
-
-			<div class="fate" ng-repeat="fate in card.data.fates">
-				<div class="fate-group">
-					<div class="fate-type">{{fate.type}}:</div>
-					<div class="fate-name">{{fate.name}}</div>
-				</div>
-
-				<div class="fate-cost" ng-class="getDice(fate.cost)" ng-click="fate.cost = (fate.cost % 5 + 1)">&nbsp;</div>
-			</div>
-
-			<div class="fate-total">
-				Total Fate Cost: {{card.data.getTotalFateCost()}} K
-			</div>
-
-			<div class="wounds">
-				<div class="wounds-title">Wounds {{card.data.calcWounds()}}</div>
-				<div
-					class="wound-box"
-					ng-class="{spacer: $index == 2}"
-					ng-repeat="key in getKeys(card.data.wounds)">
-					<div class="{{key}}-wounds">{{key.charAt(0).toUpperCase() + key.slice(1)}}</div>
-					<div
-						ng-class="{wound: true, 'wound-end': ($index + 1) % 5 == 0 || $last, 'wound-marked': wound == 1}"
-						ng-repeat="wound in card.data.wounds[key]"
-						ng-click="card.data.markWound(key)">
-					</div>
-				</div>
-			</div>
-
-			<div class="vitality-soul">
-				<div class="vitality">Vitality</div>
-				<div class="vitality-value">{{card.data.getVitality()}}</div>
-
-				<div class="soul">Soul</div>
-				<div class="soul-value">{{card.data.getSoul()}}</div>
-			</div>
-
-			<div class="weapons">
-				<div class="weapon-section-title">Weapons</div>
-				<div class="weapon-stats-labels">
-					<span class="weapon-damage-label">Dmg</span>
-					<span class="weapon-rof-label">RoF</span>
-					<span class="weapon-range-label">Range</span>
-					<span class="weapon-ammo-label">Ammo</span>
-				</div>
-
-				<div class="weapon" ng-repeat="weapon in card.data.weapons">
-					<div class="weapon-name">{{weapon.name}}</div>
-					<div class="weapon-stats">
-						<span class="weapon-damage">{{weapon.damage}}</span>
-						<span class="weapon-rof">{{weapon.rof}}</span>
-						<span class="weapon-range">{{weapon.range}}</span>
-						<span class="weapon-ammo">{{weapon.ammo}}</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="possessions-title">Possessions</div>
-			<div class="possessions" ng-class="{'possessions-no-max': skillDisplayMode == 2}">
-				<div class="possession" ng-repeat="possession in card.data.possessions">
-					{{possession}}
-				</div>
-			</div>
-		</div>
-
-		<div class="attributes-skills">
-			<div class="skills-title" ng-click="toggleSkillDisplayMode()">Skills</div>
-			<div class="attribute" ng-repeat="attrib in card.data.attributes">
-				<span class="attribute-name">{{attrib.name}}</span>
-
-				<span class="attrib-value">
-						{{attrib.value}}
-						<span ng-show="attrib.alt_value > 0">/ {{attrib.value}}</span>
-					</span>
-
-				<div class="skill" ng-repeat="skill in attrib.skills" ng-show="shouldDisplaySkill(skill)">
-					<span class="skill-name">{{skill.name}}
-					<span class="skill-value" ng-class="getDice(skill)">&nbsp;</span></span>
-				</div>
-			</div>
-		</div>
+	<div class="card {{card.type}}" ng-repeat="card in cards">
+		<tbz-card card="card"></tbz-card>
 	</div>
 </div>
 
@@ -274,10 +122,15 @@
 <script src="js/vendor/ui-bootstrap-tpls-0.3.0.min.js"></script>
 
 <script src="js/app.js"></script>
+
 <script src="js/controllers/CardsCtrl.js"></script>
 <script src="js/controllers/MenuCtrl.js"></script>
+
 <script src="js/directives/tbzLoadImage.js"></script>
+<script src="js/directives/tbzCard.js"></script>
+
 <script src="js/services/DataService.js"></script>
+<script src="js/services/CardService.js"></script>
 
 </body>
 </html>

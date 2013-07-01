@@ -1,5 +1,6 @@
 
-angular.module('tbz').controller('MenuCtrl', function ($scope, DataService) {
+angular.module('tbz').
+controller('MenuCtrl', function ($scope, DataService, CardService) {
 
     $scope.login = {
         // show: true,
@@ -19,7 +20,12 @@ angular.module('tbz').controller('MenuCtrl', function ($scope, DataService) {
                 {
                     name: "New Character",
                     icon: "option-offset icon-plus-sign",
-                    func: function () { console.log($scope.login.show); }
+                    func: function () {
+                        CardService.addCard({
+                            type: "editor",
+                            data: "sheet"
+                        });
+                    }
                 }
             ]
         },
@@ -168,7 +174,7 @@ angular.module('tbz').controller('MenuCtrl', function ($scope, DataService) {
     };
 
 
-    /**8 Display Functions ***/
+    /*** Display Functions ***/
 
     $scope.getCaret = function (type, state) {
         if (type !== "category")
