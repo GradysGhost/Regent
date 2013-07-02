@@ -1,7 +1,7 @@
 Regent
 ======
 
-Regent is an open source game management tool for Tenra Bansho Zero that is in early development. Regent will act as a hub for TBZ game info such as PC and NPC character sheets, game reference materials, media, and notes. It should also be possible to added custom apps such as encounter managers or dice rollers.
+Regent is an open source game management tool for Tenra Bansho Zero that is in early development. Regent will act as a hub for TBZ game for players and game masters alike, hosting info such as PC and NPC character sheets, game reference materials, media, and notes. It should also be possible to added custom apps such as encounter managers or dice rollers.
 
 Design
 ======
