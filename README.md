@@ -34,7 +34,9 @@ Technical Implementation Details
 
 Planned Features For v1.0 Release
 =================================
-* Micro and minimized card states with toggle
+* Card close button to remove card from player's layout
+* Local storage or cache to mange layout state and keep login sessions.
+* Micro and minimized card states with toggle buttons
     * Many cards should feature a 'micro' state which is an abridged, compact version of just their most important info.
     * All cards should feature a 'minimized' state which works similarly to windows tasks minimization. This state will only featuring the card name and an 'expand' button.
     * The layout board will feature a tray at the top or bottom. When cards are 'minimized', they disappear from the main layout and appear in their minimized state in the tray.
