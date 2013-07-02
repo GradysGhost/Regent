@@ -40,6 +40,21 @@ factory('DataService', ['$resource', function ($resource) {
                 },
                 isArray: false
             },
+            getCharacters: {
+                method: "GET",
+                params: {
+                    collection: 'characters'
+                },
+                isArray: true
+            },
+            getCharacter: {
+                method: "GET",
+                params: {
+                    collection: 'characters',
+                    fo: true
+                },
+                isArray: false
+            },
 
             // POSTs
             // insert: {
@@ -60,7 +75,7 @@ factory('DataService', ['$resource', function ($resource) {
                     collection: 'templates'
                 }
             },
-            addSheet: {
+            addCharacter: {
                 method: "POST",
                 // headers: { contentType: "application/json" },
                 params: {

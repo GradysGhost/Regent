@@ -24,7 +24,7 @@ directive('tbzCard', function ($compile, $http, $templateCache) {
 
     var cardDirective = {
         restrict: 'E',
-        scope: { card: '=' },
+        //scope: { card: '=' },
         link: linker
     };
 

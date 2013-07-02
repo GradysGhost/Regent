@@ -3,9 +3,10 @@ angular.module('tbz').
 controller('MenuCtrl', function ($scope, DataService, CardService) {
 
     $scope.login = {
-        // show: true,
-        show: false, //DEBUG
+        show: true,
         mode: 'login',
+        admin: false,
+        player: '',
         processing: false
     };
 
@@ -63,6 +64,14 @@ controller('MenuCtrl', function ($scope, DataService, CardService) {
     $scope.menuAlerts = [];
 
 
+    // DEBUG
+    $scope.debug = function () {
+        $scope.login.admin = true;
+        $scope.login.player = "nando";
+        $scope.loadMenu();
+        $scope.login.show = false;
+    };
+
     /*** Login Functions ***/
 
     $scope.toggleLoginMode = function () {
@@ -102,6 +111,9 @@ controller('MenuCtrl', function ($scope, DataService, CardService) {
             $scope.login.processing = false;
 
             if (response.hasOwnProperty("name")) {
+                $scope.login.admin = response.admin;
+                $scope.login.player = response.name;
+                $scope.loadMenu();
                 $scope.login.show = false;
             } else {
                 $scope.addMenuAlert("Incorrect username or password.");
@@ -181,6 +193,49 @@ controller('MenuCtrl', function ($scope, DataService, CardService) {
             return '';
 
         return (state ? "icon-caret-right" : "icon-caret-down");
+    };
+
+    $scope.loadMenu = function () {
+        $scope.loadMenu_Characters();
+    };
+
+    $scope.loadMenu_Characters = function () {
+        var filter = ($scope.login.admin ? {} : { "bio.player": $scope.login.player });
+
+        DataService.getCharacters(
+            { q: filter, f: { "bio.name": 1, "bio.player": 1 } },
+            function (response) {
+                if (!(response instanceof Array)) {
+                    $scope.addMenuAlert("Error loading characters.");
+                    return;
+                }
+
+                response.forEach(function (item) {
+                    $scope.menu[0].items.push({
+                        name: item.bio.name,
+                        icon: "option-offset icon-user",
+                        func: function () { $scope.addSheet(item.bio.name); }
+                    });
+                });
+            }
+        );
+    };
+
+    $scope.addSheet = function (name) {
+        DataService.getCharacter(
+            { q: { "bio.name": name } },
+            function (response) {
+                if (response.hasOwnProperty("_id")) {
+                    CardService.addCard({
+                        type: "sheet",
+                        data: response
+                    });
+                } else {
+                    $scope.addMenuAlert("Error loading character sheet.");
+                    return;
+                }
+            }
+        );
     };
 });
 

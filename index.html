@@ -13,7 +13,7 @@
 	<img class="logo" src="img/tenra-logo.png" />
 	<div class="title">REGENT</div>
 
-	<div class="menu" ng-controller="MenuCtrl">
+	<div class="menu" ng-controller="MenuCtrl" ng-init="debug()">
 
 		<!-- Login -->
 		<div class="login" ng-show="login.show">
@@ -127,6 +127,7 @@
 <script src="js/controllers/MenuCtrl.js"></script>
 
 <script src="js/directives/tbzLoadImage.js"></script>
+<script src="js/directives/tbzDragonDrop.js"></script>
 <script src="js/directives/tbzCard.js"></script>
 
 <script src="js/services/DataService.js"></script>

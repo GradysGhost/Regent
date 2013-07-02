@@ -4,8 +4,8 @@
 
 <div>
 	<div>
-		<textarea>{{card.data}}</textarea>
+		<textarea name="sheet" ng-model="card.data"></textarea>
 	</div>
-	<button class="default-button">Submit</button>
+	<button class="default-button" ng-click="createCharacter(card.data)">Submit</button>
 </div>
 

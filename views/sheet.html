@@ -1,4 +1,4 @@
-<div class="title-bar">
+<div class="title-bar" tbz-dragon-drop>
 	<div class="name">
 		{{card.data.bio.name}}
 		<span class="player">[ {{card.data.bio.player}} ]</span>
@@ -74,12 +74,13 @@
 	</div>
 
 	<div class="fate-total">
-		Total Fate Cost: {{card.data.getTotalFateCost()}} K
+		Total Fate Cost: {{getTotalFateCost(card.data)}} K
 	</div>
 
-	<div class="wounds">
+	<div class="wounds" ng-init="calcWounds(card.data)">
+
 		<div class="wounds-title">
-			Wounds {{card.data.calcWounds()}}
+			Wounds
 		</div>
 
 		<div
@@ -97,18 +98,18 @@
 						'wound-end': ($index + 1) % 5 == 0 || $last,
 						'wound-marked': wound == 1
 					}"
-				ng-repeat="wound in card.data.wounds[key]"
-				ng-click="card.data.markWound(key)">
+				ng-repeat="wound in card.data.wounds[key] track by $index"
+				ng-click="markWound(card.data, key)">
 			</div>
 		</div>
 	</div>
 
 	<div class="vitality-soul">
 		<div class="vitality">Vitality</div>
-		<div class="vitality-value">{{card.data.getVitality()}}</div>
+		<div class="vitality-value">{{getVitality(card.data)}}</div>
 
 		<div class="soul">Soul</div>
-		<div class="soul-value">{{card.data.getSoul()}}</div>
+		<div class="soul-value">{{getSoul(card.data)}}</div>
 	</div>
 
 	<div class="weapons">
@@ -131,10 +132,11 @@
 		</div>
 	</div>
 
-	<div class="possessions-title">Possessions</div>
+	<div class="possessions-title" ng-show="skillDisplayMode !== 0">Possessions</div>
 	<div
 		class="possessions"
-		ng-class="{'possessions-no-max': skillDisplayMode == 2}">
+		ng-class="{'possessions-no-max': skillDisplayMode !== 0}"
+		ng-show="skillDisplayMode !== 0">
 		<div
 			class="possession"
 			ng-repeat="possession in card.data.possessions">
@@ -168,6 +170,19 @@
 					&nbsp;
 				</span>
 			</span>
+		</div>
+	</div>
+
+	<div ng-show="skillDisplayMode === 0">
+		<div class="possessions-title">Possessions</div>
+		<div
+			class="possessions"
+			ng-class="{'possessions-no-max': skillDisplayMode !== 0}">
+			<div
+				class="possession"
+				ng-repeat="possession in card.data.possessions">
+				{{possession}}
+			</div>
 		</div>
 	</div>
 </div>
